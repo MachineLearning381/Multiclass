@@ -1,41 +1,27 @@
 import numpy as np
 from sklearn.model_selection import train_test_split
-from LinearRegression import linear_regression_ex as lnr
+from LinearRegression import linear_regression as lnr
 from pocket import pocket as pc
 
   
 
-def test_run(b,X,Y,T):
 
-  # Perceptron Hypothesis
-  wy = np.dot(X,b);
- 
-  # Pocket Algorithm
-  g,g_mistakes =  pc(X,Y,b,wy,T);
+def regress_run(X,Y,n,T):
 
-  return T, g_mistakes
 
-  
+  wx = np.insert(X,0,1,axis=1);
 
-def regress_run(X,Y,T):
+  xtr,xtst,ytr,ytst = train_test_split(wx,Y,test_size=n);
+
 
   # Init W Using Linear Regresion
-  b = lnr(X,Y);
+  b = lnr(xtr,ytr);
   
   # Linear Regression Hypothesis 
-  wy = np.dot(X,b);
+  wy = np.dot(xtr,b);
  
   # Pocket Algorithm
-  g,g_mistakes =  pc(X,Y,b,wy,T);
+  g,g_mistakes =  pc(xtr,ytr,b,wy,T);
 
-  return T,g_mistakes
+  return g, g_mistakes, T
 
-
-def full_run(X,Y,n,T):
-  
-  wx = np.insert(X,0,1,axis=1);
-  xtr,xtst,ytr,ytst = train_test_split(wx,Y,test_size=n);
-  T1,G1_mistakes = test_run(wx[0],xtr,ytr,T);
-  T2,G2_mistakes = regress_run(xtr,ytr,T);
-
-  return T1,G1_mistakes,T2,G2_mistakes

@@ -1,4 +1,3 @@
-
 import numpy as np
 import random
 
@@ -16,11 +15,7 @@ def pocket(x , y, w, w_y, T ):
   # List of random numbers
   indcs = random.sample(range(N),N);
 
-  # Changed the y values to +1, -1
-  for i in range(N):
-    if y[i] == 0:
-      y[i] = -1
-
+  
   t = 0
   mistakes_g = 99999
   mistakes = 0
@@ -56,20 +51,7 @@ def pocket(x , y, w, w_y, T ):
     mistakes = 0
     t += 1
 
-
   
 
   return g, mistakes_g
 
-
-
-
-
-
-  # place at the end to see stats
-
-  #print("Least number of mistakes: " + str(mistakes_g))
-  #print("g = ")
-  #print(g)
-  #print(y)
-  #print( np.sign( np.dot( x, g )) )
