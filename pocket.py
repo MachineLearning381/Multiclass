@@ -20,12 +20,12 @@ def pocket(x , y, w, w_y, T ):
   mistakes_g = 99999
   mistakes = 0
 
-
+# CHANGED LINE 28!!!!
   while t < T :
 
     # Look for a random mistake and correct it
     for i in indcs:
-      if np.sign( w_y[i] ) != y[i] :
+      if ( np.sign( w_y[i] ) != y[i] and y[i] != 0 ):
         w += y[i]*x[i]
         break
        
